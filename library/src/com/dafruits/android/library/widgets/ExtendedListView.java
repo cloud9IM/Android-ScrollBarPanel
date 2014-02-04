@@ -42,7 +42,7 @@ public class ExtendedListView extends ListView implements OnScrollListener {
 
 		@Override
 		public void run() {
-			if (mOutAnimation != null) {
+			if (mOutAnimation != null && mScrollBarPanel != null) {
 				mScrollBarPanel.startAnimation(mOutAnimation);
 			}
 		}
@@ -191,7 +191,10 @@ public class ExtendedListView extends ListView implements OnScrollListener {
 
 	public void setScrollBarPanel(View scrollBarPanel) {
 		mScrollBarPanel = scrollBarPanel;
-		mScrollBarPanel.setVisibility(View.GONE);
+		//Nabia fix: added guard against null
+		if(null!=mScrollBarPanel){
+			mScrollBarPanel.setVisibility(View.GONE);
+		}
 		requestLayout();
 	}
 
